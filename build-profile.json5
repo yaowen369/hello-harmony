@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "/Users/yaowen/.ohos/config/default_hello_harmony_jm58EsNt3Bb60zeniLc5ba74m_I_Nvr6gOxPOA9z7VI=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001AD96D9611D2EDF200DE146960DE7ED0496F741722FD669FDCCEEC54971968669484A67243479B",
-          "profile": "/Users/yaowen/.ohos/config/default_hello_harmony_jm58EsNt3Bb60zeniLc5ba74m_I_Nvr6gOxPOA9z7VI=.p7b",
+          "storeFile": "/Users/yaowen/code/my_code/hello_harmony/config/debug/hello.p12",
+          "storePassword": "00000018E92F9217FE9E2797CD5F6B54380FBF500480C6C727F539D3DB25DB650DA37705F6B8CF70",
+          "keyAlias": "hello",
+          "keyPassword": "000000182D5A79A54A1648ECA7FE6DF4C17E06FC0DBD50F5C85866932933105029F987263ABF8F55",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/yaowen/.ohos/config/default_hello_harmony_jm58EsNt3Bb60zeniLc5ba74m_I_Nvr6gOxPOA9z7VI=.p12",
-          "storePassword": "0000001A03EC977E88804C4FDBAE612C86D32D20A22325C205EC5A98CD27C6F5A0678C3C4479BFFD923E"
+          "profile": "/Users/yaowen/code/my_code/hello_harmony/config/debug/hello_profile_debugDebug.p7b",
+          "certpath": "/Users/yaowen/code/my_code/hello_harmony/config/debug/hello_debug.cer"
         }
       }
     ],
