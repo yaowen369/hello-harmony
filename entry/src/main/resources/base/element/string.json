@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "Hello_Harmony"
+    },
+    {
+      "name": "internet_reason",
+      "value": "Request network data"
     }
   ]
 }

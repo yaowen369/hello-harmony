@@ -1,3 +1,5 @@
+import router from '@ohos.router';
+
 @Entry
 @Component
 struct Index {
@@ -15,6 +17,20 @@ struct Index {
         })
         .onClick(() => {
           this.message = 'Welcome';
+        })
+      
+      Button('打开H5页面')
+        .id('webViewButton')
+        .fontSize(16)
+        .padding({ left: 20, right: 20, top: 10, bottom: 10 })
+        .alignRules({
+          bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          router.push({
+            url: 'pages/WebViewPage'
+          });
         })
     }
     .height('100%')
