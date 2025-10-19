@@ -7,6 +7,7 @@ import { Log } from '../utils/Log';
 struct Index {
   @State message: string = 'Hello World2';
 
+
   build() {
     RelativeContainer() {
       Text(this.message)
@@ -68,8 +69,35 @@ struct Index {
             })
         })
 
+
+      this.buildBuildFieldsButton()
+
     }
     .height('100%')
     .width('100%')
+  }
+
+
+  @Builder
+  buildBuildFieldsButton() {
+    Button('跳转编译参数页面')
+      .id('buildFieldsPageBtn')
+      .fontSize(16)
+      .margin({
+        bottom: 20
+      })
+      .alignRules({
+        bottom: { anchor: 'secondPageBtn', align: VerticalAlign.Top },
+        left: { anchor: 'secondPageBtn', align: HorizontalAlign.Start },
+        right: { anchor: 'secondPageBtn', align: HorizontalAlign.End }
+      })
+      .onClick(() => {
+        Log.i("点击 跳转编译参数页面")
+        this.getUIContext()
+          .getRouter()
+          .pushUrl({
+            url: 'pages/buildFieldsPage'
+          })
+      })
   }
 }

@@ -26,6 +26,11 @@
           "strictMode": {
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true
+          },
+          "arkOptions": {
+            "buildProfileFields": {
+              "productValue": "defaultValue-1"
+            }
           }
         }
       }
@@ -33,9 +38,23 @@
     "buildModeSet": [
       {
         "name": "debug",
+        "buildOption": {
+          "arkOptions": {
+            "buildProfileFields": {
+              "productBuildModeValue": "defaultValue-2"
+            }
+          }
+        }
       },
       {
-        "name": "release"
+        "name": "release",
+        "buildOption": {
+          "arkOptions": {
+            "buildProfileFields": {
+              "productBuildModeValue": "defaultValue-2"
+            }
+          }
+        }
       }
     ]
   },

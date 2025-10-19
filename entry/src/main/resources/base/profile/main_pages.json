@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/WebViewPage",
-    "pages/SecondPage"
+    "pages/SecondPage",
+    "pages/buildFieldsPage"
   ]
 }
