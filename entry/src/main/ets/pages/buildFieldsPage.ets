@@ -1,6 +1,7 @@
 import BuildProfile from 'entry/BuildProfile'
 import bundleManager from '@ohos.bundle.bundleManager'
 import { Log } from '../utils/Log'
+import resourceManager from '@ohos.resourceManager'
 
 @Entry
 @Component
@@ -50,6 +51,13 @@ struct buildFieldsPage {
         .fontSize(16)
 
       Text($r('app.string.test_get_string_only_from_release'))
+        .fontSize(16)
+
+      Text('读取的meta资源值: ' + this.metadataValue)
+        .fontSize(16)
+
+      // TODO 存在问题，后者会展示 [Object Object]
+      Text("1-> " + $r('app.string.metadata_string'))
         .fontSize(16)
 
     }

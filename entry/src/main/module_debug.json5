@@ -51,8 +51,7 @@
     "metadata": [
       {
         "name": "metadata_key",
-        // TODO 存在问题， metadata 是静态配置，不会进行资源解析。$string:metadata_string
-        "value": '$string:metadata_string'
+        "value": "debug时的meta值"
       }
     ],
     "requestPermissions": [
