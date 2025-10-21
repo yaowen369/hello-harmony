@@ -51,7 +51,7 @@
     "metadata": [
       {
         "name": "metadata_key",
-        "value": "metadata_value_123"
+        "value": "$string:metadata_string"
       }
     ],
     "requestPermissions": [

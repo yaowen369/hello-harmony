@@ -49,6 +49,9 @@ struct buildFieldsPage {
       Text(this.metadataValue)
         .fontSize(16)
 
+      Text($r('app.string.test_get_string_only_from_release'))
+        .fontSize(16)
+
     }
     .width('100%')
     .height('100%')

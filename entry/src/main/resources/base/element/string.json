@@ -15,6 +15,14 @@
     {
       "name": "internet_reason",
       "value": "Request network data"
+    },
+    {
+      "name": "test_get_string_only_from_release",
+      "value": "仅存在resource目录下的值"
+    },
+    {
+      "name": "metadata_string",
+      "value": "默认状态(release)时的meta值"
     }
   ]
 }
