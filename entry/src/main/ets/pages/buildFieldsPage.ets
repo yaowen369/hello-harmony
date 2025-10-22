@@ -24,7 +24,7 @@ struct buildFieldsPage {
 
       metaArary.forEach((item) => {
         item.metadata.forEach((item2) => {
-          if (item2.name === "metadata_key") {
+          if (item2.name === "GETUI_APPID") {
             this.metadataValue = item2.value;
           }
         })

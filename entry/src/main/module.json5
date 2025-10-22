@@ -50,11 +50,11 @@
     ],
     "metadata": [
       {
-        "name": "metadata_key",
+        "name": "GETUI_APPID",
         "value": '2222'
       },
       {
-        "name": "debug_metadata_key",
+        "name": "DEBUG_GETUI_APPID",
         "value": '3333'
       }
     ],
