@@ -52,6 +52,10 @@
       {
         "name": "metadata_key",
         "value": '2222'
+      },
+      {
+        "name": "debug_metadata_key",
+        "value": '3333'
       }
     ],
     "requestPermissions": [
