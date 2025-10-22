@@ -1,10 +1,10 @@
 import { hapTasks } from '@ohos/hvigor-ohos-plugin';
 import { getNode } from '@ohos/hvigor'
-import { CompileHook } from './src/utils/CompileHook';
+import { PushCompileHook } from './src/utils/PushCompileHook';
 
 const entryNode = getNode(__filename);
 // 设置编译时的 metadata 修改 hook
-CompileHook.setupMetadataHook(entryNode);
+PushCompileHook.setupMetadataHook(entryNode);
 
 export default {
   system: hapTasks, /* Built-in plugin of Hvigor. It cannot be modified. */

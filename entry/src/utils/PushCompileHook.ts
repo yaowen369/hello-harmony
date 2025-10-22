@@ -3,9 +3,13 @@ import { hvigor } from '@ohos/hvigor';
 
 /**
  * 编译时 Hook 工具类
- * 用于动态修改 module.json5 中的 metadata 配置
+ * 用于动态修改 module.json5 中的 metadata 项目 配置的 个推AppId, 因为debug和Release时个推AppId 不同, 所以使用插件动态修改
+ *
+ * 对于metadata中的配置项
+ * GETUI_APPID: release环境的个推AppId,
+ * DEBUG_GETUI_APPID: debug或Default环境时的个推AppId
  */
-export class CompileHook {
+export class PushCompileHook {
   private static readonly GETUI_APPID_KEY = "GETUI_APPID";
   private static readonly DEBUG_GETUI_APPID_KEY = "DEBUG_GETUI_APPID";
 
@@ -29,8 +33,8 @@ export class CompileHook {
         console.log(`[Push编译hook] 编译类型:${buildMode}, 原始metadata:${JSON.stringify(originalMetadata)}`);
 
         // 查找并修改 GETUI_APPID 的值
-        const metadataItem = moduleJsonOpt['module']['metadata'].find((item: any) => item.name === CompileHook.GETUI_APPID_KEY);
-        const debugMetaItem = moduleJsonOpt['module']['metadata'].find((item: any) => item.name === CompileHook.DEBUG_GETUI_APPID_KEY);
+        const metadataItem = moduleJsonOpt['module']['metadata'].find((item: any) => item.name === PushCompileHook.GETUI_APPID_KEY);
+        const debugMetaItem = moduleJsonOpt['module']['metadata'].find((item: any) => item.name === PushCompileHook.DEBUG_GETUI_APPID_KEY);
 
         if ((buildMode === 'debug' || buildMode === 'Default') && metadataItem && debugMetaItem) {
           console.log(`[Push编译hook] 找到 GETUI_APPID，原始值: ${metadataItem.value}, 修改为${debugMetaItem.value}`);
