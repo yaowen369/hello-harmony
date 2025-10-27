@@ -10,6 +10,28 @@ struct Index {
 
   build() {
     RelativeContainer() {
+      // 最上方的按钮 - 跳转到NaWebViewPage
+      Button('打开本地H5页面')
+        .id('naWebViewButton')
+        .fontSize(16)
+        .padding({
+          left: 20,
+          right: 20,
+          top: 10,
+          bottom: 10
+        })
+        .alignRules({
+          top: { anchor: '__container__', align: VerticalAlign.Top },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .margin({ top: 50 })
+        .onClick(() => {
+          router.push({
+            url: 'pages/NaWebViewPage'
+          });
+        })
+        .width("90%")
+
       Text(this.message)
         .id('HelloWorld')
         .fontSize($r('app.float.page_text_font_size'))

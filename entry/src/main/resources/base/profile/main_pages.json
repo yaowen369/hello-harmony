@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
+    "pages/NaWebViewPage",
     "pages/WebViewPage",
     "pages/SecondPage",
     "pages/buildFieldsPage"
