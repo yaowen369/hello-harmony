@@ -11,8 +11,8 @@ import { task, PluginContext } from '@ohos/hvigor';
  * DEBUG_GETUI_APPID: debug或Default环境时的个推AppId
  */
 export class PushCompileHook {
-  private static readonly GETUI_APPID_KEY = "GETUI_APPID";
-  private static readonly DEBUG_GETUI_APPID_KEY = "DEBUG_GETUI_APPID";
+  public static readonly GETUI_APPID_KEY = "GETUI_APPID";
+  public static readonly DEBUG_GETUI_APPID_KEY = "DEBUG_GETUI_APPID";
 
   /**
    * 设置编译时的 metadata 修改 hook
@@ -72,24 +72,38 @@ export function customPushMetadataPlugin(node: any) {
       if (profilePath) {
         const fs = require('fs');
         const config = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
-        // 这里无法判断当前target，只能输出全部可选target，不作为当前product用
         if (config && config.targets) {
           from = 'build-profile.json5仅可枚举，不可判定当前target';
         }
       }
     }
-
   } catch (e) {
     console.log('[Push编译hook] 读取当前产品出错:', e);
   }
 
-  if (productName === 'free') {
-    console.log(`[Push编译hook] 当前: free (来自 ${from})，`);
-  } else if (productName === 'vip') {
-    console.log(`[Push编译hook] 当前: vip (来自 ${from})，`);
-  } else {
-    console.log(`[Push编译hook] 当前: ${productName} (来自 ${from})`);
-  }
+  node.afterNodeEvaluate((currentNode: any) => {
+    try {
+      const appContext = hvigor.getRootNode().getContext(OhosPluginId.OHOS_APP_PLUGIN) as any;
+      // 获取此节点使用插件的上下文对象 此时为hap插件 获取hap插件上下文对象
+      const hapContext = currentNode.getContext(OhosPluginId.OHOS_HAP_PLUGIN) as OhosHapContext;
+      // 通过上下文对象获取从module.json5文件中读出来的obj对象
+      const moduleJsonOpt = hapContext.getModuleJsonOpt();
+      const originalMetadata = moduleJsonOpt['module']['metadata'];
+      console.log(`[Push编译hook] 当前product:${productName}(来自${from}), 原始metadata:${JSON.stringify(originalMetadata)}`);
+      const metadataItem = moduleJsonOpt['module']['metadata'].find((item: any) => item.name === PushCompileHook.GETUI_APPID_KEY);
+      const debugMetaItem = moduleJsonOpt['module']['metadata'].find((item: any) => item.name === PushCompileHook.DEBUG_GETUI_APPID_KEY);
+      if ((productName === 'free' || productName === 'default') && metadataItem && debugMetaItem) {
+        console.log(`[Push编译hook] product=${productName}, 修改 GETUI_APPID: ${metadataItem.value} => ${debugMetaItem.value}`);
+        metadataItem.value = debugMetaItem.value;
+      } else {
+        console.log(`[Push编译hook] 不修改 GETUI_APPID, 当前product=${productName}，GETUI_APPID=${metadataItem ? metadataItem.value : '未设置'}`);
+      }
+      console.log('[Push编译hook] 修改后的 GETUI_APPID:', moduleJsonOpt['module']['metadata']);
+      hapContext.setModuleJsonOpt(moduleJsonOpt);
+    } catch (error) {
+      console.error('[Push编译hook] 执行过程中发生错误:', error);
+    }
+  });
 
   if (typeof node.task === 'function') {
     node.task('customTask', () => {
