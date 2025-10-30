@@ -1,5 +1,6 @@
 import { OhosHapContext, OhosPluginId } from '@ohos/hvigor-ohos-plugin';
 import { hvigor } from '@ohos/hvigor';
+import { task, PluginContext } from '@ohos/hvigor';
 
 /**
  * 编译时 Hook 工具类
@@ -52,3 +53,49 @@ export class PushCompileHook {
     });
   }
 }
+
+/**
+ * 兼容hvigor3.x：接收node，自动检测当前构建产物，并根据产物名输出不同逻辑
+ */
+export function customPushMetadataPlugin(node: any) {
+  let productName = 'default';
+  let from = 'default';
+  try {
+    // 推荐方案：优先用hvigor参数API
+    const extParams = (typeof hvigor !== 'undefined' && hvigor.getParameter) ? hvigor.getParameter().getExtParams() : undefined;
+    if (extParams && extParams.product) {
+      productName = extParams.product;
+      from = 'hvigor参数';
+    } else {
+      // 兼容旧法：从 build-profile.json5 判断
+      const profilePath = node.projectPaths && node.projectPaths.buildProfile;
+      if (profilePath) {
+        const fs = require('fs');
+        const config = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
+        // 这里无法判断当前target，只能输出全部可选target，不作为当前product用
+        if (config && config.targets) {
+          from = 'build-profile.json5仅可枚举，不可判定当前target';
+        }
+      }
+    }
+
+  } catch (e) {
+    console.log('[Push编译hook] 读取当前产品出错:', e);
+  }
+
+  if (productName === 'free') {
+    console.log(`[Push编译hook] 当前: free (来自 ${from})，`);
+  } else if (productName === 'vip') {
+    console.log(`[Push编译hook] 当前: vip (来自 ${from})，`);
+  } else {
+    console.log(`[Push编译hook] 当前: ${productName} (来自 ${from})`);
+  }
+
+  if (typeof node.task === 'function') {
+    node.task('customTask', () => {
+      console.log('Building for product: ' + productName);
+    }).dependsOn && node.task('customTask').dependsOn('assembleHar');
+  }
+}
+
+
