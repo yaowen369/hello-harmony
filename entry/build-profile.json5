@@ -22,7 +22,13 @@
       "name": "default"
     },
     {
-      "name": "ohosTest",
+      "name": "free"
+    },
+    {
+      "name": "vip"
+    },
+    {
+      "name": "ohosTest"
     }
   ]
 }

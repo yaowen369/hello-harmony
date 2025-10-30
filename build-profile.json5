@@ -33,6 +33,42 @@
             }
           }
         }
+      },
+      {
+        "name": "free",
+        "signingConfig": "default",
+        "targetSdkVersion": "5.0.5(17)",
+        "compatibleSdkVersion": "5.0.4(16)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          },
+          "arkOptions": {
+            "buildProfileFields": {
+              "productValue": "freeValue-1"
+            }
+          }
+        }
+      },
+      {
+        "name": "vip",
+        "signingConfig": "default",
+        "targetSdkVersion": "5.0.5(17)",
+        "compatibleSdkVersion": "5.0.4(16)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          },
+          "arkOptions": {
+            "buildProfileFields": {
+              "productValue": "vipValue-1"
+            }
+          }
+        }
       }
     ],
     "buildModeSet": [
@@ -67,6 +103,18 @@
           "name": "default",
           "applyToProducts": [
             "default"
+          ]
+        },
+        {
+          "name": "free",
+          "applyToProducts": [
+            "free"
+          ]
+        },
+        {
+          "name": "vip",
+          "applyToProducts": [
+            "vip"
           ]
         }
       ]
