@@ -44,6 +44,9 @@ struct Index {
           this.message = 'Welcome';
         })
 
+
+
+
       Button('打开H5页面')
         .id('webViewButton')
         .fontSize(16)
@@ -94,9 +97,31 @@ struct Index {
 
       this.buildBuildFieldsButton()
 
+      this.jumpNavigationBtn()
+
     }
     .height('100%')
     .width('100%')
+  }
+
+  @Builder
+  jumpNavigationBtn() {
+    Button('Navigation跳转到下个页面')
+      .id('jumpNavigaBtn')
+      .fontSize(16)
+      .margin({
+        bottom:10
+      })
+      .alignRules({
+        bottom:{anchor:'buildFieldsPageBtn', align:VerticalAlign.Top},
+        left:{anchor:'buildFieldsPageBtn', align:HorizontalAlign.Start},
+        right:{anchor:'buildFieldsPageBtn', align:HorizontalAlign.End},
+      })
+      .onClick(() => {
+        Log.i("Navigation 跳转第二个页面")
+        // TODO 测试Navition页面
+        // https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-navigation-navigation
+      })
   }
 
 

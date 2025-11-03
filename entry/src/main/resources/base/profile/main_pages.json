@@ -4,6 +4,7 @@
     "pages/NaWebViewPage",
     "pages/WebViewPage",
     "pages/SecondPage",
-    "pages/buildFieldsPage"
+    "pages/buildFieldsPage",
+    "pages/NavigationTestPage"
   ]
 }
