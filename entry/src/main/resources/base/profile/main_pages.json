@@ -5,6 +5,6 @@
     "pages/WebViewPage",
     "pages/SecondPage",
     "pages/buildFieldsPage",
-    "pages/NavigationTestPage"
+    "pages/route/NavigationTestPage"
   ]
 }
