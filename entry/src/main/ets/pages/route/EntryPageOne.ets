@@ -26,51 +26,37 @@ const COLUMN_SPACE: number = 12;
 export struct PageOne {
   pageInfos: NavPathStack = new NavPathStack();
 
+  @Builder
+  buildClearButton(label: Resource) {
+    Button(label, { stateEffect: true, type: ButtonType.Capsule })
+      .width($r('app.string.button_width'))
+      .height($r('app.string.button_height'))
+      .onClick(() => {
+        //Clear all pages in the stack.
+        this.pageInfos.clear();
+      })
+  }
+
+  @Builder
+  buildNavButton(label: Resource, pathName: string) {
+    Button(label, { stateEffect: true, type: ButtonType.Capsule })
+      .width($r('app.string.button_width'))
+      .height($r('app.string.button_height'))
+      .onClick(() => {
+        //Push the NavDestination page information specified by name onto the stack, and pass the data as param.
+        this.pageInfos.pushPathByName(pathName, null);
+      })
+  }
+
   build() {
     NavDestination() {
       Column({ space: COLUMN_SPACE }) {
-        Button($r('app.string.entry_index'), { stateEffect: true, type: ButtonType.Capsule })
-          .width($r('app.string.button_width'))
-          .height($r('app.string.button_height'))
-          .onClick(() => {
-            //Clear all pages in the stack.
-            this.pageInfos.clear();
-          })
-        Button($r('app.string.entry_pageTwo'), { stateEffect: true, type: ButtonType.Capsule })
-          .width($r('app.string.button_width'))
-          .height($r('app.string.button_height'))
-          .onClick(() => {
-            //Push the NavDestination page information specified by name onto the stack, and pass the data as param.
-            this.pageInfos.pushPathByName('pageTwo', null);
-          })
-        Button($r('app.string.harA_pageOne'), { stateEffect: true, type: ButtonType.Capsule })
-          .width($r('app.string.button_width'))
-          .height($r('app.string.button_height'))
-          .onClick(() => {
-            //Push the NavDestination page information specified by name onto the stack, and pass the data as param.
-            this.pageInfos.pushPathByName('HarAPageOne', null);
-          })
-        Button($r('app.string.harA_pageTwo'), { stateEffect: true, type: ButtonType.Capsule })
-          .width($r('app.string.button_width'))
-          .height($r('app.string.button_height'))
-          .onClick(() => {
-            //Push the NavDestination page information specified by name onto the stack, and pass the data as param.
-            this.pageInfos.pushPathByName('HarAPageTwo', null);
-          })
-        Button($r('app.string.harB_pageOne'), { stateEffect: true, type: ButtonType.Capsule })
-          .width($r('app.string.button_width'))
-          .height($r('app.string.button_height'))
-          .onClick(() => {
-            //Push the NavDestination page information specified by name onto the stack, and pass the data as param.
-            this.pageInfos.pushPathByName('HarBPageOne', null);
-          })
-        Button($r('app.string.harB_pageTwo'), { stateEffect: true, type: ButtonType.Capsule })
-          .width($r('app.string.button_width'))
-          .height($r('app.string.button_height'))
-          .onClick(() => {
-            //Push the NavDestination page information specified by name onto the stack, and pass the data as param.
-            this.pageInfos.pushPathByName('HarBPageTwo', null);
-          })
+        this.buildClearButton($r('app.string.entry_index'))
+        this.buildNavButton($r('app.string.entry_pageTwo'), 'pageTwo')
+        this.buildNavButton($r('app.string.harA_pageOne'), 'HarAPageOne')
+        this.buildNavButton($r('app.string.harA_pageTwo'), 'HarAPageTwo')
+        this.buildNavButton($r('app.string.harB_pageOne'), 'HarBPageOne')
+        this.buildNavButton($r('app.string.harB_pageTwo'), 'HarBPageTwo')
       }
       .width($r('app.string.navDestination_width'))
       .height($r('app.string.navDestination_height'))

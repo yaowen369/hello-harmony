@@ -2,5 +2,6 @@
 alwaysApply: true
 ---
 # 一,基础说明
-1. 这是一个HarmonyNext的项目. 主要是用ArkTS语言.
+1. 这是一个HarmonyNext的项目. 主要使用ArkTS语言.
 2. 如果有必要可以联网搜索资料，或者查看官网资料. Harmony的官方文档地址: https://developer.huawei.com/consumer/cn/doc/， 其中开发内容文档地址是: https://developer.huawei.com/consumer/cn/develop/
+3. 回答过程尽量使用简体中文.
