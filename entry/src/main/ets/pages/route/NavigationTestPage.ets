@@ -1,3 +1,6 @@
+
+// https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-navigation-navigation
+
 @Entry
 @Component
 struct NavigationTestPage {
