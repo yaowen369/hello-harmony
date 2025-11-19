@@ -1,6 +1,7 @@
 import router from '@ohos.router';
 import { RouterParam } from '../param/GeneralParam';
 import { Log } from '../utils/Log';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -8,73 +9,34 @@ struct Index {
   @State message: string = 'Hello World2';
 
   build() {
-    RelativeContainer() {
+    Flex({
+      direction: FlexDirection.Row,
+      wrap: FlexWrap.Wrap,
+      space: { main: new LengthMetrics(10), cross: new LengthMetrics(10) }
+    }) {
       // 最上方的按钮 - 跳转到NaWebViewPage
       Button('打开本地H5页面')
         .id('naWebViewButton')
         .fontSize(16)
-        .padding({
-          left: 20,
-          right: 20,
-          top: 10,
-          bottom: 10
-        })
-        .alignRules({
-          top: { anchor: '__container__', align: VerticalAlign.Top },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .margin({ top: 50 })
         .onClick(() => {
           router.push({
             url: 'pages/NaWebViewPage'
           });
-        })
-        .width("90%")
-
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
         })
 
 
       Button('打开H5页面')
         .id('webViewButton')
         .fontSize(16)
-        .padding({
-          left: 20,
-          right: 20,
-          top: 10,
-          bottom: 10
-        })
-        .alignRules({
-          bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
         .onClick(() => {
           router.push({
             url: 'pages/WebViewPage'
           });
         })
-        .width("90%")
 
       Button('Router跳转page2')
         .id('secondPageBtn')
         .fontSize(16)
-        .margin({
-          bottom: 20
-        })
-        .alignRules({
-          bottom: { anchor: 'webViewButton', align: VerticalAlign.Top },
-          left: { anchor: 'webViewButton', align: HorizontalAlign.Start },
-          right: { anchor: 'webViewButton', align: HorizontalAlign.End }
-        })
         .onClick(() => {
           this.getUIContext()
             .getRouter()
@@ -97,8 +59,6 @@ struct Index {
       this.jumpNavigationBtn()
 
     }
-    .height('100%')
-    .width('100%')
   }
 
   @Builder
@@ -106,14 +66,6 @@ struct Index {
     Button('Navigation 测试页面')
       .id('jumpNavigaBtn')
       .fontSize(16)
-      .margin({
-        bottom: 10
-      })
-      .alignRules({
-        bottom: { anchor: 'buildFieldsPageBtn', align: VerticalAlign.Top },
-        left: { anchor: 'buildFieldsPageBtn', align: HorizontalAlign.Start },
-        right: { anchor: 'buildFieldsPageBtn', align: HorizontalAlign.End },
-      })
       .onClick(() => {
         Log.i("Navigation 跳转第二个页面")
         this.getUIContext().getRouter().pushUrl({
@@ -127,14 +79,6 @@ struct Index {
     Button('跳转编译参数页面')
       .id('buildFieldsPageBtn')
       .fontSize(16)
-      .margin({
-        bottom: 20
-      })
-      .alignRules({
-        bottom: { anchor: 'secondPageBtn', align: VerticalAlign.Top },
-        left: { anchor: 'secondPageBtn', align: HorizontalAlign.Start },
-        right: { anchor: 'secondPageBtn', align: HorizontalAlign.End }
-      })
       .onClick(() => {
         Log.i("点击 跳转编译参数页面")
         this.getUIContext()
