@@ -1,7 +1,7 @@
 import router from '@ohos.router';
 import { RouterParam } from '../param/GeneralParam';
 import { Log } from '../utils/Log';
-import { LengthMetrics } from '@kit.ArkUI';
+import { LengthMetrics, PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -14,6 +14,15 @@ struct Index {
       wrap: FlexWrap.Wrap,
       space: { main: new LengthMetrics(10), cross: new LengthMetrics(10) }
     }) {
+
+      this.buildButton("测试", () => {
+        try {
+          this.getUIContext().getPromptAction().showToast({ message: '测试内容' })
+        } catch (error) {
+          // TODO: Implement error handling.
+        }
+      })
+
       // 最上方的按钮 - 跳转到NaWebViewPage
       Button('打开本地H5页面')
         .id('naWebViewButton')
@@ -86,6 +95,15 @@ struct Index {
           .pushUrl({
             url: 'pages/buildFieldsPage'
           })
+      })
+  }
+
+  @Builder
+  buildButton(content: string, event: () => void) {
+    Button(content)
+      .fontSize(16)
+      .onClick(() => {
+        event()
       })
   }
 }
