@@ -1,7 +1,6 @@
 import BuildProfile from 'entry/BuildProfile'
 import bundleManager from '@ohos.bundle.bundleManager'
 import { Log } from '../utils/Log'
-import resourceManager from '@ohos.resourceManager'
 
 @Entry
 @Component
